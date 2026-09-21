@@ -1,1 +1,44 @@
+package videojuego;
 
+public class Combate {
+public static void iniciarCombate(Personaje personaje1, Personaje personaje2) {
+    System.out.println("-----------------------");
+    System.out.println(" INICIO DEL COMBATE");
+    System.out.println("-----------------------");
+    System.out.println(personaje1.getNombre()+ " VS " + personaje2.getNombre());
+    System.out.println();
+    Personaje atacante = personaje1;
+    Personaje defensor = personaje2;
+    
+while (personaje1.estaVivo() && personaje2.estaVivo()) {
+    System.out.println("--------------------------------");
+    System.out.println(atacante.getNombre() + " ataca a " + defensor.getNombre());
+    atacante.atacar(defensor);
+    System.out.println("Vida de " + defensor.getNombre() + ": " + defensor.getPuntosVida() + "/" + defensor.getVidaMaxima());
+    
+    if (!defensor.estaVivo()) {
+        break;
+}
+
+    Personaje temporal = atacante;
+    atacante = defensor;
+    defensor = temporal;
+}
+    System.out.println("----------------------");
+    System.out.println(" FIN DEL COMBATE");
+    System.out.println("----------------------");
+    Personaje ganador;
+    
+if (personaje1.estaVivo()) {
+    ganador = personaje1;
+} else {
+    
+    ganador = personaje2;
+}
+    System.out.println("Ganador: " + ganador.getNombre());
+    ganador.ganarExperiencia(100);
+    System.out.println(ganador.getNombre() + " gano 100 puntos de experiencia.");
+    System.out.println("Experiencia actual: " + ganador.getExperiencia());
+    System.out.println();
+}
+}
