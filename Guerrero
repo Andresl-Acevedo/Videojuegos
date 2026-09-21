@@ -1,1 +1,32 @@
+package videojuego;
 
+
+public class Guerrero extends Personaje {
+    private int fuerza;
+    
+    public Guerrero(int identificador, String nombre, int nivel, int puntosVida, int experiencia, int fuerza) {
+        super(identificador, nombre, nivel, puntosVida, experiencia);
+        this.fuerza = fuerza;
+}
+@Override
+public int atacar(Personaje objetivo) {
+    int daño = fuerza * getNivel();
+
+if (getPuntosVida() <= getVidaMaxima() * 0.30) {
+    daño = (int) (daño * 1.20);
+    System.out.println(getNombre()+ " esta con poca vida y obtiene un 20% de bonificacion.");
+}
+
+    System.out.println(getNombre() + " ataca con su espada.");
+    System.out.println("Daño causado: " + daño);
+    objetivo.recibirDanio(daño);
+    return daño;
+}
+
+@Override
+public void mostrarInformacion() {
+    super.mostrarInformacion();
+    System.out.println("Tipo: Guerrero");
+    System.out.println("Fuerza: " + fuerza);
+}
+}
