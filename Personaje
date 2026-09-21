@@ -1,1 +1,80 @@
+package videojuego;
 
+    public abstract class Personaje {
+
+    private int identificador;
+    private String nombre;
+    private int nivel;
+    private int puntosVida;
+    private int vidaMaxima;
+    private int experiencia;
+
+    public Personaje(int identificador, String nombre, int nivel, int puntosVida, int experiencia) {
+
+        this.identificador = identificador;
+        this.nombre = nombre;
+        this.nivel = nivel;
+        this.puntosVida = puntosVida;
+        this.vidaMaxima = puntosVida;
+        this.experiencia = experiencia;
+    }
+
+    public int getIdentificador() {
+        return identificador;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public int getPuntosVida() {
+        return puntosVida;
+    }
+
+    public int getVidaMaxima() {
+        return vidaMaxima;
+    }
+
+    public int getExperiencia() {
+        return experiencia;
+    }
+
+    public void recibirDanio(int danio) {
+        puntosVida = puntosVida - danio;
+
+        if (puntosVida < 0) {
+            puntosVida = 0;
+        }
+    }
+
+    public boolean estaVivo() {
+        return puntosVida > 0;
+    }
+
+    public void ganarExperiencia(int experienciaGanada) {
+        experiencia = experiencia + experienciaGanada;
+        int experienciaNecesaria = nivel * 100 + 100;
+        
+        while (experiencia >= experienciaNecesaria) {
+            experiencia = experiencia - experienciaNecesaria;
+            nivel = nivel + 1;
+            vidaMaxima = vidaMaxima + 20;
+            puntosVida = vidaMaxima;
+            System.out.println(nombre + " subio al nivel " + nivel);
+            System.out.println("Su vida maxima ahora es: " + vidaMaxima);
+            experienciaNecesaria = nivel * 100 + 100;
+        }
+    }
+    public void mostrarInformacion() {
+        System.out.println("ID: " + identificador);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Nivel: " + nivel);
+        System.out.println("Vida: " + puntosVida + "/" + vidaMaxima);
+        System.out.println("Experiencia: " + experiencia);
+    }
+    public abstract int atacar(Personaje objetivo);
+}
