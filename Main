@@ -1,1 +1,52 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+// Integrantes: Andres Leonardo Acevedo Vega, Juan Sebastian Mancipe, Oscar Andres Serrano
 
+package videojuego;
+
+
+public class Videojuego {
+
+    
+    public static void main(String[] args) {
+        Guerrero guerrero1 = new Guerrero(1, "Goku", 1, 150, 0, 30);
+        Guerrero guerrero2 = new Guerrero(2, "Kratos", 1, 160, 0, 28);
+
+        Mago mago1 = new Mago(3, "Merlin", 1, 100, 0, 35, 60);
+        Mago mago2 = new Mago( 4, "Gandalf", 1, 110, 0, 32, 50);
+
+        Arquero arquero1 = new Arquero(5, "Legolas", 1, 120, 0, 25, 15);
+        Arquero arquero2 = new Arquero( 6, "Robin", 1, 125, 0, 24, 18);
+
+        System.out.println("================================");
+        System.out.println(" PERSONAJES CREADOS");
+        System.out.println("================================");
+        guerrero1.mostrarInformacion();
+        System.out.println();
+        guerrero2.mostrarInformacion();
+        System.out.println();
+        mago1.mostrarInformacion();
+        System.out.println();
+        mago2.mostrarInformacion();
+        System.out.println();
+        arquero1.mostrarInformacion();
+        System.out.println();
+        arquero2.mostrarInformacion();
+
+        Combate.iniciarCombate(guerrero1, mago1);
+        Combate.iniciarCombate(guerrero2, arquero1);
+        Combate.iniciarCombate(mago2, arquero2);
+
+        System.out.println("================================");
+        System.out.println(" ATAQUE ESPECIAL");
+        System.out.println("================================");
+
+        Mago magoEspecial = new Mago(7, "Dumbledore", 1, 100, 0, 40, 60);
+        Guerrero enemigo = new Guerrero( 8, "Kid buu", 1, 180, 0, 25);
+        magoEspecial.ataqueEspecial(enemigo);
+        System.out.println("Vida de " + enemigo.getNombre() + ": " + enemigo.getPuntosVida());
+    
+}   
+}
