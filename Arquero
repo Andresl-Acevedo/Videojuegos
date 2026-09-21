@@ -1,1 +1,38 @@
+package videojuego;
 
+import java.util.Random;
+public class Arquero extends Personaje {
+    private int fuerza;
+    private int precision;
+    
+    public Arquero(int identificador, String nombre, int nivel, int puntosVida, int experiencia, int fuerza, int precision) {
+        super(identificador, nombre, nivel, puntosVida, experiencia);
+        this.fuerza = fuerza;
+        this.precision = precision;
+}
+    
+@Override
+public int atacar(Personaje objetivo) {
+    int daño = (fuerza * getNivel()) + precision;
+    Random random = new Random();
+    int numero = random.nextInt(2);
+    
+    if (numero == 1) {
+        daño = daño * 2;
+        System.out.println(getNombre() + " realizo un ATAQUE CRITICO!");
+} else {
+        
+        System.out.println(getNombre() + " realizo un ataque normal.");
+}
+        System.out.println("Daño causado: " + daño);
+        objetivo.recibirDanio(daño);
+        return daño;
+}
+@Override
+public void mostrarInformacion() {
+    super.mostrarInformacion();
+    System.out.println("Tipo: Arquero");
+    System.out.println("Fuerza: " + fuerza);
+    System.out.println("Precision: " + precision);
+}
+}
