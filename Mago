@@ -1,1 +1,54 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package videojuego;
 
+/**
+ *
+ * @author PC GAMER
+ */
+public class Mago extends Personaje {
+    private int poderMagico;
+    private int mana;
+    
+    
+    public Mago(int identificador, String nombre, int nivel, int puntosVida, int experiencia, int poderMagico, int mana) {
+        
+        super(identificador, nombre, nivel, puntosVida, experiencia);
+        this.poderMagico = poderMagico;
+        this.mana = mana;
+}
+
+@Override
+public int atacar(Personaje objetivo) {
+    int daño = poderMagico * getNivel();
+    System.out.println(getNombre() + " realiza un ataque magico.");
+    
+System.out.println("Daño causado: " + daño);
+objetivo.recibirDanio(daño);
+return daño;
+}
+
+public int ataqueEspecial(Personaje objetivo) {
+    if (mana < 20) {
+        System.out.println(getNombre() + " no tiene suficiente mana.");
+        return 0;
+}
+    
+        mana = mana - 20;
+        int daño = poderMagico * getNivel() * 2;
+        System.out.println(getNombre() + " realiza un ATAQUE ESPECIAL.");
+        System.out.println("Mana restante: " + mana);
+        System.out.println("Daño especial: " + daño);
+        objetivo.recibirDanio(daño);
+        return daño;
+}
+@Override
+public void mostrarInformacion() {
+    super.mostrarInformacion();
+    System.out.println("Tipo: Mago");
+    System.out.println("Poder magico: " + poderMagico);
+    System.out.println("Mana: " + mana);
+}
+}
